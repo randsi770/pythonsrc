@@ -1,0 +1,8 @@
+
+1Live:
+mplayer http://1live.akacast.akamaistream.net/7/706/119434/v1/gnl.akacast.akamaistream.net/1live 
+
+NDR2:
+mplayer -playlist http://www.ndr.de/resources/metadaten/audio/m3u/ndr2.m3u
+
+

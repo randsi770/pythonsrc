@@ -1,0 +1,10 @@
+http://cs231n.github.io/python-numpy-tutorial/
+
+http://wyolum.com/numpyscipymatplotlib-on-raspberry-pi/
+
+https://wiki.archlinux.org/index.php/gitlab#Basic_configuration
+
+https://wiki.archlinux.org/index.php/git#Git
+
+nützliche links
+
