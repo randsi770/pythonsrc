@@ -2,7 +2,7 @@ from __future__ import division
 import    io
 import    time
 import    picamera
-import    cv2
+import    cv
 import    numpy as np
 
 class MotionDetector( ):
@@ -30,7 +30,7 @@ class MotionDetector( ):
         self.camera.capture(stream, format='yuv', resize=self.resolution, use_video_port=True)
         data = stream.getvalue()[:self.raw_bytes]
         image = np.fromstring(data, dtype=np.uint8).reshape((self.raw_resolution[1], self.raw_resolution[0]) )
-        cv2.erode(image, self.erosion_filter) 
+        #cv2.erode(image, self.erosion_filter) 
         image = image.astype(np.float) 
         if self.background is None: 
             self.background = image 
@@ -44,10 +44,13 @@ class MotionDetector( ):
             return result
     
 with picamera.PiCamera() as cam: 
+	
     cam.resolution = (1280, 720)
     #Kamera vor dem Beginn warm laufen lassen
     time.sleep(2)
-    detector = MotionDetector(cam) 
+    detector = MotionDetector(cam)
+    count = 1 
     while True:
         if detector.poll():
-            print("I see you!") 
+			count = count + 1
+			print("I see you! " + str(count))

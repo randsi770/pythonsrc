@@ -23,6 +23,7 @@ threshold = 10
 sensitivity = 20
 forceCapture = True
 forceCaptureTime = 60 * 60 # Once an hour
+li = -1
 
 # File settings
 saveWidth = 1280
@@ -31,20 +32,13 @@ diskSpaceToReserve = 40 * 1024 * 1024 # Keep 40 mb free on disk
 
 # Capture a small test image (for motion detection)
 def captureTestImage():
-    command = "raspistill -w %s -h %s -t 0 -e bmp -o -" % (100, 75)
-    print (command)
+    command = "raspistill -w %s -h %s -t 1 -e bmp -o -" % (100, 75) 
     imageData = StringIO.StringIO()
-    print ('gj2')
     imageData.write(subprocess.check_output(command, shell=True))
-    print ('gj3')
     imageData.seek(0)
-    print ('gj4')
     im = Image.open(imageData)
-    print ('gj5')
     buffer = im.load()
-    print ('gj6')
     imageData.close()
-    print ('gj7')
     return im, buffer
 
 # Save a full size image to disk
@@ -52,7 +46,7 @@ def saveImage(width, height, diskSpaceToReserve):
     keepDiskSpaceFree(diskSpaceToReserve)
     time = datetime.now()
     filename = "capture-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
-    subprocess.call("raspistill -w 1296 -h 972 -t 0 -e jpg -q 15 -o %s" % filename, shell=True)
+    subprocess.call("raspistill -w 1296 -h 972 -t 1 -e jpg -q 15 -o %s" % filename, shell=True)
     print "Captured %s" % filename
 
 # Keep free space above given level
@@ -81,6 +75,12 @@ while (True):
 
     # Get comparison image
     image2, buffer2 = captureTestImage()
+    
+    if li == -1:
+		image1 = image2
+		buffer1 = buffer2
+		lastCapture = time.time()
+		li = 0
         
     # Count changed pixels
     changedPixels = 0
