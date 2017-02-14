@@ -8,3 +8,7 @@ https://wiki.archlinux.org/index.php/git#Git
 
 nützliche links
 
+git clone https://github.com/randsi770/pythonsrc.git <Zielordner>
+
+http://stackoverflow.com/questions/10417108/what-is-different-between-all-these-opencv-python-interfaces
+
