@@ -6,6 +6,7 @@
 #Import
 import RPi.GPIO as GPIO
 import time
+import subprocess
 import datetime
 import os
  
@@ -20,7 +21,11 @@ PIR_GPIO = 8
 GPIO.setup(PIR_GPIO, GPIO.IN)
  
 def MOTION(PIR_GPIO):
-     os.system("echo  \"Bewegung erkannt\"")
+    os.system("echo  \"Bewegung erkannt\"")
+    time = datetime.now()
+    filename = "capture-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
+    subprocess.call("raspistill -w 1296 -h 972 -t 1 -e jpg -q 15 -o %s" % filename, shell=True)
+    print "Captured %s" % filename
  
 print "%s - Warten auf Bewegung" % datetime.datetime.now()  
 try:
