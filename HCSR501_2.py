@@ -6,8 +6,8 @@
 #Import
 import RPi.GPIO as GPIO
 import time
+from datetime import datetime
 import subprocess
-import datetime
 import os
  
 print "BEWEGUNGSMELDER"
@@ -27,7 +27,7 @@ def MOTION(PIR_GPIO):
     subprocess.call("raspistill -w 1296 -h 972 -t 1 -e jpg -q 15 -o %s" % filename, shell=True)
     print "Captured %s" % filename
  
-print "%s - Warten auf Bewegung" % datetime.datetime.now()  
+print "%s - Warten auf Bewegung" % datetime.now()  
 try:
      GPIO.add_event_detect(PIR_GPIO, GPIO.RISING, callback=MOTION)
      while 1:
