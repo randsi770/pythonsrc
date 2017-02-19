@@ -12,3 +12,10 @@ git clone https://github.com/randsi770/pythonsrc.git <Zielordner>
 
 http://stackoverflow.com/questions/10417108/what-is-different-between-all-these-opencv-python-interfaces
 
+
+https://cayenne.mydevices.com/cayenne/dashboard/first-visit/raspberrypi/step-3:
+wget https://cayenne.mydevices.com/dl/rpi_0zaz8oh6fa.sh
+
+sudo bash rpi_0zaz8oh6fa.sh -v
+
+
